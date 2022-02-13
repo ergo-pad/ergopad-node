@@ -1,0 +1,6 @@
+.env
+
+mainnet.conf
+testnet.conf
+
+*.jar

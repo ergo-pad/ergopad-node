@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  ergonode:
+    container_name: ergonode
+    env_file: app/.env
+    # image: openjdk
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /ergo/mainnet/.ergo:/ergo/.ergo
+    ports: 
+      - ${ERGONODE_PORT}:${ERGONODE_PORT}
+      - 9030:9030
+    networks:
+      - net
+    working_dir: /app
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 5
+        window: 90s
+    logging:
+        driver: "json-file"
+        options:
+            max-file: 5
+            max-size: 10m
+    command: java -jar -Xmx${ERGONODE_HEAP} -Dlogback.stdout.level=${ERGONODE_LOGLEVEL} -Dlogback.file.level=${ERGONODE_LOGLEVEL} ergo_${ERGONODE_NETWORK}.jar --${ERGONODE_NETWORK} -c ${ERGONODE_NETWORK}.conf
+
+networks:
+  net:
+    driver: bridge
