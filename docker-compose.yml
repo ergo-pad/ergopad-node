@@ -3,7 +3,7 @@ version: '3.9'
 services:
   ergonode:
     container_name: ergonode
-    env_file: app/.env
+    env_file: ${ENV}/.env
     # image: openjdk
     build: 
       context: .
