@@ -10,6 +10,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - /ergo/mainnet/.ergo:/ergo/.ergo
+      - /ergo/mainnet/${ERGONODE_NETWORK}.conf:/app/${ERGONODE_NETWORK}.conf
     ports: 
       - ${ERGONODE_PORT}:${ERGONODE_PORT}
       - 9030:9030
