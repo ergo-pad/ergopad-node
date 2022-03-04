@@ -1,4 +1,5 @@
-FROM openjdk
+# FROM openjdk
+FROM bellsoft/liberica-openjdk-alpine
 
 COPY ./app /app
 WORKDIR /app
