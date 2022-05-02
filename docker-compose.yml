@@ -11,6 +11,7 @@ services:
     volumes:      
       - ergo-data:/ergo/.ergo # - /ergo/mainnet/.ergo:/ergo/.ergo
       - ${CONF_FILE}:/etc/${ERGONODE_NETWORK}.conf
+      - ./jar/ergo-4.0.26.jar:/app/ergo_${ERGONODE_NETWORK}.jar
     ports: 
       - ${ERGONODE_PORT}:${ERGONODE_PORT}
       - 9030:9030
